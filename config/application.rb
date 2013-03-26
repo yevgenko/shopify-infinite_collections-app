@@ -18,13 +18,18 @@ end
 module ShopifyIcollection
   class Application < Rails::Application
 
+    # Shopify API connection credentials:
+    config.shopify.api_key = ENV['SHOPIFY_KEY']
+    config.shopify.secret = ENV['SHOPIFY_SECRET']
+
+
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
-      
+
       g.test_framework :rspec, fixture: true
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
-      
-      
+
+
       g.view_specs false
       g.helper_specs false
     end
