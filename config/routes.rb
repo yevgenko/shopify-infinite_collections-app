@@ -1,7 +1,4 @@
 ShopifyIcollection::Application.routes.draw do
-  match 'welcome' => 'home#welcome'
-  match 'design' => 'home#design'
-
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
