@@ -11,8 +11,12 @@ class SessionsController < ApplicationController
     if response = request.env['omniauth.auth']
       sess = ShopifyAPI::Session.new(params[:shop], response[:credentials][:token])
       session[:shopify] = sess
+
+      # recording shop for future
+      shop = Shop.find_or_create_by_url(sess.url)
+
       flash[:notice] = "Logged in"
-      redirect_to return_address
+      redirect_to edit_shop_path(shop)
     else
       flash[:error] = "Could not log in to Shopify store."
       redirect_to :action => 'new'

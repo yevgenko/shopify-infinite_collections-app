@@ -11,6 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20130402140104) do
+
+  create_table "shops", :force => true do |t|
+    t.string   "url"
+    t.boolean  "paid"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.boolean  "script_installed"
+  end
+
+  add_index "shops", ["url"], :name => "index_shops_on_url"
 
 end

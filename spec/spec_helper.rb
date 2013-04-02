@@ -49,3 +49,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
+
+OmniAuth.config.test_mode = true
+OmniAuth.config.add_mock(:shopify, {
+  :credentials => {
+    :token => '12345'
+  }
+})
