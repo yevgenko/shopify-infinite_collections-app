@@ -44,6 +44,15 @@ describe ShopsController do
         get :edit, {:id => shop.to_param}, valid_session
         assigns(:shop).should eq(shop)
       end
+
+      it "creates script tag" do
+        shop = FactoryGirl.create(:shop, paid: true, script_installed: false)
+        ShopifyAPI::ScriptTag.should_receive(:create).with(
+          event: 'onload',
+          src: "#{widget_url}.js"
+        )
+        get :edit, {:id => shop.to_param}, valid_session
+      end
     end
 
     context "for non paid user" do

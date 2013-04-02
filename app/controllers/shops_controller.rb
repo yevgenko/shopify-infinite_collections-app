@@ -2,6 +2,7 @@ class ShopsController < ApplicationController
   around_filter :shopify_session
   before_filter :correct_shop?
   before_filter :paid_shop?
+  after_filter :create_scripttag
 
   # GET /shops/1/edit
   def edit
@@ -35,9 +36,22 @@ class ShopsController < ApplicationController
     end
   end
 
-  # ensure is paid shop
+  # ensure it is a paid shop
   def paid_shop?
     @shop ||= Shop.find(params[:id])
     redirect_to billing_index_path unless @shop.paid
+  end
+
+  # register script tag
+  def create_scripttag
+    @shop ||= Shop.find(params[:id])
+    unless @shop.script_installed?
+      ShopifyAPI::ScriptTag.create(
+        event: 'onload',
+        src: "#{widget_url}.js"
+      )
+      @shop.script_installed = true
+      @shop.save
+    end
   end
 end

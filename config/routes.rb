@@ -1,4 +1,8 @@
 ShopifyIcollection::Application.routes.draw do
+  scope :format => 'js' do
+    get 'widget' => 'widget#index'
+  end
+
   get "billing/index"
 
   get "billing/confirm"

@@ -1,0 +1,11 @@
+if (!iCollection) {
+  var iCollection = (function(window, undefined) {
+    iCollection = {
+      shop_url: '<%= @shop.url %>'
+    }
+
+    console.log('Welcome to ' + iCollection.shop_url);
+
+    return iCollection;
+  })(window);
+}
