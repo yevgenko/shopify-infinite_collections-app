@@ -35,7 +35,7 @@ a { color:$col-blue;
 
 .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover {
   background-color:$col-blue !important;
-  [class^="icon-"] { background-image: url('/assets/twitter/bootstrap/glyphicons-halflings-white.png');}
+  // [class^="icon-"] { background-image: url('/assets/twitter/bootstrap/glyphicons-halflings-white.png');}
 }
 
 .container {
@@ -47,9 +47,9 @@ a { color:$col-blue;
 
 .content { min-height: 500px;}
 
-[class^="icon-"] { background-image: url('/assets/twitter/bootstrap/glyphicons-halflings.png');}
+// [class^="icon-"] { background-image: url('/assets/twitter/bootstrap/glyphicons-halflings.png');}
 
-.icon-white { background-image: url('/assets/twitter/bootstrap/glyphicons-halflings-white.png');}
+// .icon-white { background-image: url('/assets/twitter/bootstrap/glyphicons-halflings-white.png');}
 
 .navbar {
   .brand { color: #fff;}
