@@ -7,7 +7,7 @@ class BillingController < ApplicationController
       price: 9,
       return_url: billing_confirm_url,
       trial_days: 14,
-      test: Rails.env.development?
+      test: Rails.env.development? || ENV['SHOPIFY_TEST']
     )
 
     redirect_to charge.confirmation_url
