@@ -24,3 +24,4 @@ gem "better_errors", ">= 0.7.2", :group => :development
 gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri_19, :rbx]
 gem 'shopify_app'
 gem 'shoulda-matchers', :group => :test
+gem 'pg', :group => :production
