@@ -1,10 +1,12 @@
 if (!iCollection) {
   var iCollection = (function(window, undefined) {
     iCollection = {
-      shop_url: '<%= @shop.url %>'
+      shop_url: '<%= @shop.url %>',
+      products_per_row: '<%= @shop.products_per_row %>'
     }
 
     console.log('Welcome to ' + iCollection.shop_url);
+    console.log('Products Per Row: ' + iCollection.products_per_row);
 
     return iCollection;
   })(window);

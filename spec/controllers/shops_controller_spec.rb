@@ -20,13 +20,15 @@ require 'spec_helper'
 
 describe ShopsController do
   let(:shop) { FactoryGirl.create(:shop) }
-  let(:paid_shop) { FactoryGirl.create(:shop, paid: true) }
+  let(:paid_shop) { FactoryGirl.create(:shop, paid: true, script_installed: true) }
 
   # This should return the minimal set of attributes required to create a valid
   # Shop. As you add validations to Shop, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {
+      products_per_row: 3
+    }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -78,39 +80,39 @@ describe ShopsController do
     end
   end
 
-  # describe "PUT update" do
-  #   describe "with valid params" do
-  #     it "updates the requested shop" do
-  #       Shop.any_instance.should_receive(:update_attributes).with({ "url" => "MyString" })
-  #       put :update, {:id => paid_shop.to_param, :shop => { "url" => "MyString" }}, valid_session
-  #     end
+  describe "PUT update" do
+    describe "with valid params" do
+      it "updates the requested shop" do
+        Shop.any_instance.should_receive(:update_attributes).with({ "url" => "MyString" })
+        put :update, {:id => paid_shop.to_param, :shop => { "url" => "MyString" }}, valid_session
+      end
 
-  #     it "assigns the requested shop as @shop" do
-  #       put :update, {:id => paid_shop.to_param, :shop => valid_attributes}, valid_session
-  #       assigns(:shop).should eq(paid_shop)
-  #     end
+      it "assigns the requested shop as @shop" do
+        put :update, {:id => paid_shop.to_param, :shop => valid_attributes}, valid_session
+        assigns(:shop).should eq(paid_shop)
+      end
 
-  #     it "redirects to the shop" do
-  #       put :update, {:id => paid_shop.to_param, :shop => valid_attributes}, valid_session
-  #       response.should redirect_to(paid_shop)
-  #     end
-  #   end
+      it "redirects to the shop" do
+        put :update, {:id => paid_shop.to_param, :shop => valid_attributes}, valid_session
+        response.should redirect_to edit_shop_path(paid_shop)
+      end
+    end
 
-  #   describe "with invalid params" do
-  #     it "assigns the shop as @shop" do
-  #       # Trigger the behavior that occurs when invalid params are submitted
-  #       Shop.any_instance.stub(:save).and_return(false)
-  #       put :update, {:id => paid_shop.to_param, :shop => { "url" => "invalid value" }}, valid_session
-  #       assigns(:shop).should eq(paid_shop)
-  #     end
+    describe "with invalid params" do
+      it "assigns the shop as @shop" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        Shop.any_instance.stub(:save).and_return(false)
+        put :update, {:id => paid_shop.to_param, :shop => { "products_per_row" => "3" }}, valid_session
+        assigns(:shop).should eq(paid_shop)
+      end
 
-  #     it "re-renders the 'edit' template" do
-  #       # Trigger the behavior that occurs when invalid params are submitted
-  #       Shop.any_instance.stub(:save).and_return(false)
-  #       put :update, {:id => paid_shop.to_param, :shop => { "url" => "invalid value" }}, valid_session
-  #       response.should render_template("edit")
-  #     end
-  #   end
-  # end
+      it "re-renders the 'edit' template" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        Shop.any_instance.stub(:save).and_return(false)
+        put :update, {:id => paid_shop.to_param, :shop => { "products_per_row" => "3" }}, valid_session
+        response.should render_template("edit")
+      end
+    end
+  end
 
 end

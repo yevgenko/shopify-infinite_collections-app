@@ -1,0 +1,14 @@
+<%= simple_form_for(@shop, :html => {:class => 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <div class="control-group">
+      <legend>General Settings</legend>
+      <%= f.input :products_per_row, collection: 1..4, autofocus: true %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Update", :class => "btn btn-primary" %>
+  </div>
+<% end %>

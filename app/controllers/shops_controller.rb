@@ -11,19 +11,19 @@ class ShopsController < ApplicationController
 
   # PUT /shops/1
   # PUT /shops/1.json
-  # def update
-  #   @shop = Shop.find(params[:id])
+  def update
+    @shop = Shop.find(params[:id])
 
-  #   respond_to do |format|
-  #     if @shop.update_attributes(params[:shop])
-  #       format.html { redirect_to @shop, notice: 'Shop was successfully updated.' }
-  #       format.json { head :no_content }
-  #     else
-  #       format.html { render action: "edit" }
-  #       format.json { render json: @shop.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+    respond_to do |format|
+      if @shop.update_attributes(params[:shop])
+        format.html { redirect_to edit_shop_path(@shop), notice: 'Preferences have been updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @shop.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   private
 
